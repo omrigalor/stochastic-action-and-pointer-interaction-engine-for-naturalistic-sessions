@@ -1,6 +1,6 @@
 # Methodology
 
-SAPIENS-Web is a hierarchical generative model. It separates the interaction into two levels:
+The Stochastic Action and Pointer Interaction Engine for Naturalistic Sessions is a hierarchical generative model. It separates the interaction into two levels:
 
 1. **Motor layer** — where the pointer goes, how long the reach takes, and how velocity changes.
 2. **Session layer** — how long a page is inspected, how deep a session runs, and when a longer pause occurs.

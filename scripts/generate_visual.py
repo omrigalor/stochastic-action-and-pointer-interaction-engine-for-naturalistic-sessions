@@ -9,7 +9,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from sapiens_web import SapiensModel  # noqa: E402
+from naturalistic_interaction_engine import NaturalisticInteractionEngine  # noqa: E402
 
 
 WIDTH, HEIGHT = 1200, 720
@@ -40,7 +40,7 @@ def main():
     panels = []
     positions = [(70, 220), (620, 220), (70, 465), (620, 465)]
     for index, name in enumerate(COLORS):
-        generator = SapiensModel(seed=100 + index)
+        generator = NaturalisticInteractionEngine(seed=100 + index)
         _, points = generator.trajectory((0, 0), (760, 280), model=name, hz=90)
         left, top = positions[index]
         path, start, end = path_data(points, left + 28, top + 57, 454, 92)
@@ -54,7 +54,7 @@ def main():
             f'<text x="{left + 24}" y="{top + 170}" fill="#71849e" font-family="ui-sans-serif, system-ui" font-size="13">seeded stochastic draw · {len(points)} samples</text></g>'
         )
     svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {WIDTH} {HEIGHT}" role="img" aria-labelledby="title desc">
-  <title id="title">SAPIENS-Web model overview</title>
+  <title id="title">Stochastic Action and Pointer Interaction Engine for Naturalistic Sessions model overview</title>
   <desc id="desc">Four stochastic cursor trajectories generated from the same start and target.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07111f"/><stop offset="1" stop-color="#111b2e"/></linearGradient>
@@ -62,12 +62,12 @@ def main():
   </defs>
   <rect width="1200" height="720" rx="28" fill="url(#bg)"/>
   <circle cx="980" cy="70" r="160" fill="#4177ff" opacity=".10" filter="url(#glow)"/>
-  <text x="70" y="85" fill="#f4f7fb" font-family="ui-sans-serif, system-ui" font-size="52" font-weight="700">SAPIENS-Web</text>
-  <text x="70" y="124" fill="#a7b6ca" font-family="ui-sans-serif, system-ui" font-size="21">Stochastic Action and Pointer Interaction Engine for Naturalistic Sessions</text>
+  <text x="70" y="70" fill="#f4f7fb" font-family="ui-sans-serif, system-ui" font-size="32" font-weight="700">Stochastic Action and Pointer Interaction Engine</text>
+  <text x="70" y="108" fill="#f4f7fb" font-family="ui-sans-serif, system-ui" font-size="32" font-weight="700">for Naturalistic Sessions</text>
   <text x="70" y="168" fill="#7f93ad" font-family="ui-monospace, monospace" font-size="17">KINEMATICS  ·  DWELL  ·  SESSION DEPTH  ·  INTER-SESSION PAUSES</text>
   {''.join(panels)}
 </svg>'''
-    output = ROOT / "assets" / "sapiens-web-overview.svg"
+    output = ROOT / "assets" / "naturalistic-interaction-engine-overview.svg"
     output.write_text(svg)
     print(output)
 

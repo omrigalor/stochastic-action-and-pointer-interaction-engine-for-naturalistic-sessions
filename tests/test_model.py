@@ -2,12 +2,12 @@ import math
 
 import pytest
 
-from sapiens_web import SapiensModel, speed_series
+from naturalistic_interaction_engine import NaturalisticInteractionEngine, speed_series
 
 
-@pytest.mark.parametrize("name", SapiensModel.models)
+@pytest.mark.parametrize("name", NaturalisticInteractionEngine.models)
 def test_trajectory_reaches_target(name):
-    model = SapiensModel(seed=19)
+    model = NaturalisticInteractionEngine(seed=19)
     selected, points = model.trajectory((12, 30), (640, 410), model=name, hz=100)
     assert selected == name
     assert len(points) >= 12
@@ -18,14 +18,14 @@ def test_trajectory_reaches_target(name):
 
 
 def test_fitts_time_increases_with_distance_for_fixed_noise_seed():
-    near = SapiensModel(seed=7).fitts_time(80, 40)
-    far = SapiensModel(seed=7).fitts_time(800, 40)
+    near = NaturalisticInteractionEngine(seed=7).fitts_time(80, 40)
+    far = NaturalisticInteractionEngine(seed=7).fitts_time(800, 40)
     assert far > near
 
 
 def test_session_layer_is_seed_reproducible_and_bounded():
-    left = SapiensModel(seed=11)
-    right = SapiensModel(seed=11)
+    left = NaturalisticInteractionEngine(seed=11)
+    right = NaturalisticInteractionEngine(seed=11)
     left_values = (left.dwell_time(300), left.session_depth(), left.break_time(), left.record_interval())
     right_values = (right.dwell_time(300), right.session_depth(), right.break_time(), right.record_interval())
     assert left_values == right_values
@@ -36,7 +36,7 @@ def test_session_layer_is_seed_reproducible_and_bounded():
 
 
 def test_speed_series_is_finite_and_nonnegative():
-    _, points = SapiensModel(seed=3).trajectory((0, 0), (500, 220), model="minimum_jerk")
+    _, points = NaturalisticInteractionEngine(seed=3).trajectory((0, 0), (500, 220), model="minimum_jerk")
     speeds = speed_series(points)
     assert speeds
     assert all(math.isfinite(speed) and speed >= 0 for _, speed in speeds)

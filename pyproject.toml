@@ -3,7 +3,7 @@ requires = ["setuptools>=69"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "sapiens-web"
+name = "stochastic-action-and-pointer-interaction-engine-for-naturalistic-sessions"
 version = "0.1.0"
 description = "A stochastic, hierarchical model of human-web interaction dynamics"
 readme = "README.md"

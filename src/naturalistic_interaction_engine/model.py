@@ -1,4 +1,4 @@
-"""SAPIENS-Web: stochastic models of human–web interaction dynamics.
+"""Stochastic models of human–web interaction dynamics.
 
 The package generates synthetic interaction traces for simulation, interface testing,
 and research prototyping. It does not identify people and it does not claim that the
@@ -37,7 +37,7 @@ class SessionParameters:
     break_alpha: float = 1.3
 
 
-class SapiensModel:
+class NaturalisticInteractionEngine:
     """Seedable hierarchical generator for pointer motion and browsing cadence."""
 
     models = ("bezier", "wind", "sigma_lognormal", "minimum_jerk")
